@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model customer {
+  UserId    Int     @id   @default(autoincrement()) @map("UserId")
+  USERNAME    String   @map("USERNAME")
+  UserGrade   String    @map("UserGrade")
+}
+
+model orders {
+  OrderId   Int   @id   @default(autoincrement()) @map("OrderId")
+  UserId    Int   @map("UserId")
+  OrderDate   DateTime   @map("OrderDate")
+  OrderType OrderType?    @map("OrderType") 
+  OrderPrice    Int   @map("OrderPrice")
+}
+
+enum OrderType {
+  order
+  refund
+}
