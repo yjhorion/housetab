@@ -6,6 +6,7 @@ import mysql from 'mysql2/promise'
 import dotenv from 'dotenv'
 import { prisma } from './utils/prisma/index.js'
 import {default as statistics}  from './routes/statistics.router.js'
+import {default as getOrders} from './routes/getOrder.router.js'
 
 
 
@@ -26,6 +27,7 @@ const OrderData = example[1]['data']
 
 app.use('/', [
     statistics,
+    getOrders
 ])
 
 app.listen(PORT, () => {

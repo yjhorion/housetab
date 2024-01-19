@@ -11,6 +11,8 @@ model customer {
   UserId    Int     @id   @default(autoincrement()) @map("UserId")
   USERNAME    String   @map("USERNAME")
   UserGrade   String    @map("UserGrade")
+
+  order   orders[]
 }
 
 model orders {
@@ -19,6 +21,8 @@ model orders {
   OrderDate   DateTime   @map("OrderDate")
   OrderType OrderType?    @map("OrderType") 
   OrderPrice    Int   @map("OrderPrice")
+
+  Customer  customer   @relation(fields: [UserId], references: [UserId], onDelete: Cascade)
 }
 
 enum OrderType {
